@@ -14,7 +14,7 @@ Feature: Admin attempts to schedule a game
     When The user clicks on Schedule game
     Then The user is on Game Scheduling Form
     When User selects a venue
-    When User selects season for basketball
+    When User selects a season basketball
     When User selects Sport as "basketball"
     When User selects a Home Team
     When User selects an Away Team
@@ -26,7 +26,7 @@ Feature: Admin attempts to schedule a game
     Then The user is on Game Scheduling Form
     When User selects a venue
     When User selects a past date
-    When User selects season for basketball
+    When User selects a season basketball
     When User selects Sport as "basketball"
     When User selects a Home Team
     When User selects an Away Team
@@ -39,7 +39,7 @@ Feature: Admin attempts to schedule a game
       Then The user is on Game Scheduling Form
       When User selects a venue
       When User selects a time and date
-      When User selects season for basketball
+      When User selects a season basketball
       And User clicks schedule button
       Then User gets a popup of selecting sports field
 

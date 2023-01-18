@@ -32,7 +32,7 @@ public class OptionPage {
     public WebElement editUserProfileButton;
 
     @FindBy(linkText="Games")
-    public WebElement gamesLink;
+    public WebElement gamesLInk;
 
     @FindBy(linkText="View Venues")
     public WebElement viewVenuesLink;
@@ -57,9 +57,6 @@ public class OptionPage {
 
     @FindBy(linkText="Officiate Games")
     public WebElement officiateGamesLink;
-
-    @FindBy(linkText="Team Applications")
-    public WebElement teamApplicationsLink;
 
 
     @FindBy(tagName ="button")

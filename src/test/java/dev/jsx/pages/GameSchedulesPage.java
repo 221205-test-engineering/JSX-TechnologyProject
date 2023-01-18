@@ -28,7 +28,7 @@ public class GameSchedulesPage {
     @FindBy(id="gameTableBody")
     public WebElement gameTableBody;
 
-    @FindBy(xpath="//*[@id='gameTableBody']/tr[1]")
+    @FindBy(xpath="*[@id='gameTableBody']/tr[1]")
     public WebElement firstRow;
 
     @FindBy(linkText="Back")

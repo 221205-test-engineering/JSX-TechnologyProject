@@ -29,7 +29,6 @@ public class UserManagerPage {
 
         return null;
     }
-
     @FindBy(id="userTableBody")
     public WebElement userTableBody;
 

@@ -59,11 +59,11 @@ public class OfficiateGamePage {
     public WebElement homeAddOnePointButton;
 
     // add 2 points
-    @FindBy(xpath="//*[@id=\"homeTeam\"]/dl/dd[1]/button[2]")
+    @FindBy(xpath="//*[@id=\"homeTeam\"]/dl/dd[1]/button[1]")
     public WebElement homeAddTwoPointsButton;
 
     //add 3 points
-    @FindBy(xpath="//*[@id=\"homeTeam\"]/dl/dd[1]/button[3]")
+    @FindBy(xpath="//*[@id=\"homeTeam\"]/dl/dd[1]/button[1]")
     public WebElement homeAddThreePointsButton;
 
     // add fouls to home team
@@ -90,11 +90,11 @@ public class OfficiateGamePage {
     public WebElement awayAddOnePointButton;
 
     // add 2 points
-    @FindBy(xpath="//*[@id=\"awayTeam\"]/dl/dd[1]/button[2]")
+    @FindBy(xpath="//*[@id=\"awayTeam\"]/dl/dd[1]/button[1]")
     public WebElement awayAddTwoPointsButton;
 
     //add 3 points
-    @FindBy(xpath="//*[@id=\"awayTeam\"]/dl/dd[1]/button[3]")
+    @FindBy(xpath="//*[@id=\"awayTeam\"]/dl/dd[1]/button[1]")
     public WebElement awayAddThreePointsButton;
 
     // add fouls to home team

@@ -28,7 +28,7 @@ public class AddSeasonPage {
     @FindBy(name="season")
     public WebElement seasonNameInput;
 
-    @FindBy(xpath="//form/button[text()='submit']")
+    @FindBy(xpath="/html/body/form/button")
     public WebElement submitButton;
 
     @FindBy(linkText="Back")
