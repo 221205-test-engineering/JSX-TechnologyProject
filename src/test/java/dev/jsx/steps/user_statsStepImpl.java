@@ -68,7 +68,7 @@ public class user_statsStepImpl {
     }
     @When("User click on show Referee")
     public void user_click_on_show_referee() {
-        WebElement showRef = driver.findElement(By.xpath("/html/body/table/tbody/tr[3]/td[12]/button"));
+        WebElement showRef = driver.findElement(By.xpath("/html/body/table/tbody/tr[2]/td[12]/button"));
 
         showRef.click();
     }

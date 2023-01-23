@@ -1,0 +1,1602 @@
+{
+	"info": {
+		"_postman_id": "7541d0e0-83d0-4a8e-9945-26e644624862",
+		"name": "JSX-TechnologyProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24818235"
+	},
+	"item": [
+		{
+			"name": "Game Request Apply Copy",
+			"item": [
+				{
+					"name": "Game Request Apply Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const reqBody = JSON.parse(pm.request.body);\r",
+									"const resBody = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response code should be 201 CREATED\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body should be formatted correctly\", function() {\r",
+									"    const reqBody = JSON.parse(pm.request.body);\r",
+									"    const resBody = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(resBody.gameId).to.eql(reqBody.gameId);\r",
+									"    pm.expect(resBody.userId).to.eql(reqBody.userId);\r",
+									"    pm.expect(resBody.gameRequestId).to.be.a('number');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"gameId\": 2,\r\n        \"userId\": 3\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/game-requests/apply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"game-requests",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Game Request Apply Invalid User ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code should be 422 UNPROCESSABLE ENTITY\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gameId\": 1,\r\n    \"userId\": -1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/game-requests/apply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"game-requests",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Game Request Apply Invalid Game ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response code should be 422 UNPROCESSABLE ENTITY\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gameId\": -1,\r\n    \"userId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/game-requests/apply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"game-requests",
+								"apply"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game Request Delete Copy",
+			"item": [
+				{
+					"name": "Game Request Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response should have 204 NO CONTENT SUCCESS status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(204);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"gameId\": 3,\r\n        \"userId\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/game-requests/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"game-requests",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Game Request Delete Invalid Game or User ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response should have 404 NOT FOUND status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(404);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"gameId\": -1,\r\n    \"userId\": -1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/game-requests/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"game-requests",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedule Game Copy",
+			"item": [
+				{
+					"name": "Schedule Game Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 201 CREATED status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Reponse body should have correct format\", function() {\r",
+									"    const body = pm.response.json();\r",
+									"\r",
+									"    pm.expect(body.gameId).to.be.a('number');\r",
+									"    pm.expect(body.venueTitle).to.be.a('string');\r",
+									"    pm.expect(body.seasonTitle).to.be.a('string');\r",
+									"    pm.expect(body.homeTeam).to.be.a('string');\r",
+									"    pm.expect(body.awayTeam).to.be.a('string');\r",
+									"    pm.expect(body.homeScore).to.be.a('number');\r",
+									"    pm.expect(body.awayScore).to.be.a('number');\r",
+									"    pm.expect(body.gameStart).to.be.a('number');\r",
+									"    pm.expect(body.outcome).to.be.a('string');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venueTitle\": \"Main Campus Gym: Court 1\",\r\n    \"seasonTitle\": \"Fall 2022 Regular Season Basketball\",\r\n    \"homeTeam\": \"The Ballers\",\r\n    \"awayTeam\": \"Grand Dunk Railroad\",\r\n    \"homeScore\": 0,\r\n    \"awayScore\": 0,\r\n    \"gameStart\": 1674236806,\r\n    \"outcome\": \"scheduled\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Game Invalid Outcome",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venueTitle\": \"Main Campus Gym: Court 1\",\r\n    \"seasonTitle\": \"Fall 2022 Regular Season Basketball\",\r\n    \"homeTeam\": \"The Ballers\",\r\n    \"awayTeam\": \"Grand Dunk Railroad\",\r\n    \"homeScore\": 0,\r\n    \"awayScore\": 0,\r\n    \"gameStart\": 1674236806,\r\n    \"outcome\": \"aliens landed and finished the game for us\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Game Invalid Away Team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venueTitle\": \"Main Campus Gym: Court 1\",\r\n    \"seasonTitle\": \"Fall 2022 Regular Season Basketball\",\r\n    \"homeTeam\": \"The Ballers\",\r\n    \"awayTeam\": \"Example Away Team\",\r\n    \"homeScore\": 0,\r\n    \"awayScore\": 0,\r\n    \"gameStart\": 1674236806,\r\n    \"outcome\": \"scheduled\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Game Invalid Home Team",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venueTitle\": \"Main Campus Gym: Court 1\",\r\n    \"seasonTitle\": \"Fall 2022 Regular Season Basketball\",\r\n    \"homeTeam\": \"Example Home Team\",\r\n    \"awayTeam\": \"Grand Dunk Railroad\",\r\n    \"homeScore\": 0,\r\n    \"awayScore\": 0,\r\n    \"gameStart\": 1674236806,\r\n    \"outcome\": \"scheduled\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Game Invalid Venue Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venueTitle\": \"Example Venue\",\r\n    \"seasonTitle\": \"Fall 2022 Regular Season Basketball\",\r\n    \"homeTeam\": \"The Ballers\",\r\n    \"awayTeam\": \"Grand Dunk Railroad\",\r\n    \"homeScore\": 0,\r\n    \"awayScore\": 0,\r\n    \"gameStart\": 1674236806,\r\n    \"outcome\": \"scheduled\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Game Invalid Season Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venueTitle\": \"Main Campus Gym: Court 1\",\r\n    \"seasonTitle\": \"Example Season\",\r\n    \"homeTeam\": \"The Ballers\",\r\n    \"awayTeam\": \"Grand Dunk Railroad\",\r\n    \"homeScore\": 0,\r\n    \"awayScore\": 0,\r\n    \"gameStart\": 1674236806,\r\n    \"outcome\": \"scheduled\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/games",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"games"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register Team Copy",
+			"item": [
+				{
+					"name": "Register Team Positive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 204 NO CONTENT SUCCESS status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aliens\",\r\n    \"captain\": 1,\r\n    \"sport\": \"softball\",\r\n    \"teamStatus\": \"suspended\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Team Invalid Captain",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aliens 2\",\r\n    \"captain\": -2000,\r\n    \"sport\": \"softball\",\r\n    \"teamStatus\": \"suspended\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Team Invalid Sport",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aliens 3\",\r\n    \"captain\": 1,\r\n    \"sport\": \"outer space golf\",\r\n    \"teamStatus\": \"suspended\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Team Invalid Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Should have 422 UNPROCESSABLE ENTITY status code\", function() {\r",
+									"    pm.expect(pm.response.code).to.eql(422);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Aliens 4\",\r\n    \"captain\": 1,\r\n    \"sport\": \"softball\",\r\n    \"teamStatus\": \"traversing at light speed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GetAllUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// Get all users tests\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"  pm.expect(jsonData).to.be.an(\"array\");\r",
+							"  for (const item of jsonData)  {\r",
+							"    pm.expect(item.username).to.be.a(\"string\");\r",
+							"    pm.expect(item.password).to.be.a(\"string\");\r",
+							"    pm.expect(item.role).to.be.a(\"string\");\r",
+							"    pm.expect(item.heightInches).to.be.a(\"number\");\r",
+							"    pm.expect(item.weightLbs).to.be.a(\"number\");\r",
+							"    pm.expect(item.profilePic).to.be.a(\"string\");\r",
+							"    pm.expect(item.hideBiometrics).to.be.a(\"boolean\");\r",
+							"  }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response property matches environment variable\", function () {\r",
+							"  pm.expect(pm.response.json().username).to.eql(pm.environment.get(\"username\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"  // Register\r",
+							"  pm.test(\"Successful POST request\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);\r",
+							"  });\r",
+							"  \r",
+							"  pm.test(\"Content-Type header is present\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"  });\r",
+							"  "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"username\": \"goomba\",\r\n        \"password\": \"bowser3\",\r\n        \"role\": \"player\",\r\n        \"heightInches\": 72,\r\n        \"weightLbs\": 148,\r\n        \"profilePic\": \"none\",\r\n        \"hideBiometrics\": true\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);",
+							"  });",
+							"  ",
+							"  pm.test(\"Content-Type header is present\", () => {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"  });",
+							"  ",
+							"  const jsonData = pm.response.json();",
+							"  ",
+							"  pm.test(\"Test data type of the response\", () => {",
+							"    pm.expect(jsonData).to.be.an(\"object\");",
+							"      pm.expect(jsonData.username).to.be.a(\"string\");",
+							"      pm.expect(jsonData.password).to.be.a(\"string\");",
+							"      pm.expect(jsonData.role).to.be.a(\"string\");",
+							"      pm.expect(jsonData.heightInches).to.be.a(\"number\");",
+							"      pm.expect(jsonData.weightLbs).to.be.a(\"number\");",
+							"      pm.expect(jsonData.profilePic).to.be.a(\"string\");",
+							"      pm.expect(jsonData.hideBiometrics).to.be.a(\"boolean\");",
+							"    });",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"username\": \"chutablec\",\n        \"password\": \"swB1brkS2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"  // PUT update\r",
+							"\r",
+							"  pm.test(\"Successful PUT request\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,204]);\r",
+							"  });\r",
+							"  \r",
+							"  \r",
+							"  pm.test(\"Content-Type header is present\", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"  });\r",
+							"  \r",
+							"  pm.test(\"Test data type of the response\", () => {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"      pm.expect(jsonData.username).to.be.a(\"string\");\r",
+							"      pm.expect(jsonData.password).to.be.a(\"string\");\r",
+							"      pm.expect(jsonData.role).to.be.a(\"string\");\r",
+							"      pm.expect(jsonData.heightInches).to.be.a(\"number\");\r",
+							"      pm.expect(jsonData.weightLbs).to.be.a(\"number\");\r",
+							"      pm.expect(jsonData.profilePic).to.be.a(\"string\");\r",
+							"      pm.expect(jsonData.hideBiometrics).to.be.a(\"boolean\");\r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"chutablec\",\r\n    \"password\": \"swB1brkS2\",\r\n    \"heightInches\": 70,\r\n    \"weightLbs\": 130,\r\n    \"profilePic\": \"https://robohash.org/suntdeseruntcum.png?size=150x150&set=set1\",\r\n    \"hideBiometrics\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUserRole",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    // Patch update role\r",
+							"    pm.test(\"Successful PUT request\", () => {\r",
+							"        pm.expect(pm.response.code).to.be.oneOf([200,201,204]);\r",
+							"      });\r",
+							"      \r",
+							"      pm.test(\"Content-Type header is present\", () => {\r",
+							"        pm.response.to.have.header(\"Content-Type\");\r",
+							"      });\r",
+							"      \r",
+							"      pm.test(\"the endpoint does not return unexpected status codes\", () => {\r",
+							"        // comma separate the valid response codes below\r",
+							"        const unexpectedStatusCodes = [404, 500];\r",
+							"        pm.expect(pm.response.code).to.not.be.oneOf(\r",
+							"          unexpectedStatusCodes,\r",
+							"          `did not expect response status to be one of ${unexpectedStatusCodes} but got ${pm.response.code}.`\r",
+							"        );\r",
+							"      });\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"role\": \"referee\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/users/20/role",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"users",
+						"20",
+						"role"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);",
+							"  });",
+							"  ",
+							"  pm.test(\"Content-Type header is present\", () => {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"  });",
+							"  ",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RetrievePlayersByTeam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Retrieve Users By Team\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is present\", () => {\r",
+							"  pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response must be valid and have a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"  pm.expect(jsonData).to.be.an(\"array\");\r",
+							"  for (const item of jsonData)  {\r",
+							"    pm.expect(item.username).to.be.a(\"string\");\r",
+							"    pm.expect(item.password).to.be.a(\"string\");\r",
+							"    pm.expect(item.role).to.be.a(\"string\");\r",
+							"    pm.expect(item.heightInches).to.be.a(\"number\");\r",
+							"    pm.expect(item.weightLbs).to.be.a(\"number\");\r",
+							"    pm.expect(item.profilePic).to.be.a(\"string\");\r",
+							"    pm.expect(item.hideBiometrics).to.be.a(\"boolean\");\r",
+							"  }\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", () => {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response property matches environment variable\", function () {\r",
+							"  pm.expect(pm.response.json().username).to.eql(pm.environment.get(\"username\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/teams/The Ballers/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teams",
+						"The Ballers",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/seasons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"seasons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seasons",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check for internal server error\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Winter 2023 A-Team Tournament\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/seasons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"seasons"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Team Requests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check for internal server error\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"teamRequestId\": 2,\r\n        \"teamName\": \"Grand Dunk Railroad\",\r\n        \"requesterId\": 16,\r\n        \"teamRequestStatus\": \"pending\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/teamrequests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teamrequests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Team Requests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/teamrequests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teamrequests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Team Requests Approve",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/teamrequests/1/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teamrequests",
+						"1",
+						"approve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Team Request Deny",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/teamrequests/1/deny",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teamrequests",
+						"1",
+						"deny"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Playercards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/playercards/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"playercards",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Referee and Games Lookup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should have 200 OK status code\", function() {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Reponse items should have correct format\", function() {\r",
+							"    const body = pm.response.json();\r",
+							"\r",
+							"    body.forEach(item => {\r",
+							"        pm.expect(item.gameRequestId).to.be.a('number');\r",
+							"        pm.expect(item.gameId).to.be.a('number');\r",
+							"        pm.expect(item.userId).to.be.a('number');\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/referee-and-games-lookup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"referee-and-games-lookup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should have 200 OK status code\", function() {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Reponse items should have correct format\", function() {\r",
+							"    const body = pm.response.json();\r",
+							"\r",
+							"    body.forEach(item => {\r",
+							"        pm.expect(item.gameId).to.be.a('number');\r",
+							"        pm.expect(item.venueTitle).to.be.a('string');\r",
+							"        pm.expect(item.seasonTitle).to.be.a('string');\r",
+							"        pm.expect(item.homeTeam).to.be.a('string');\r",
+							"        pm.expect(item.awayTeam).to.be.a('string');\r",
+							"        pm.expect(item.homeScore).to.be.a('number');\r",
+							"        pm.expect(item.awayScore).to.be.a('number');\r",
+							"        pm.expect(item.gameStart).to.be.a('number');\r",
+							"        pm.expect(item.outcome).to.be.a('string');\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/games",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Venues",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should have 200 OK status code\", function() {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Reponse items should have correct format\", function() {\r",
+							"    const body = pm.response.json();\r",
+							"\r",
+							"    body.forEach(item => {\r",
+							"        pm.expect(item.title).to.be.a('string');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/venues",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"venues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Teams",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should have 200 OK status code\", function() {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Reponse items should have correct format\", function() {\r",
+							"    const body = pm.response.json();\r",
+							"\r",
+							"    body.forEach(item => {\r",
+							"        pm.expect(item.name).to.be.a('string');\r",
+							"        pm.expect(item.captain).to.be.a('number');\r",
+							"        pm.expect(item.sport).to.be.a('string');\r",
+							"        pm.expect(item.teamStatus).to.be.a('string');\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/teams",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Team By Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Should have 200 OK status code\", function() {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Reponse items should have correct format\", function() {\r",
+							"    const body = pm.response.json();\r",
+							"\r",
+							"    pm.expect(body.name).to.be.a('string');\r",
+							"    pm.expect(body.captain).to.be.a('number');\r",
+							"    pm.expect(body.sport).to.be.a('string');\r",
+							"    pm.expect(body.teamStatus).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/teams/The Ballers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"teams",
+						"The Ballers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
