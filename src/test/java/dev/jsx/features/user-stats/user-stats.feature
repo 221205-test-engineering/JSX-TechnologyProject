@@ -15,5 +15,5 @@ Feature: A user can view their game stats
 
     | username    | password  |
     | cindy101    | pass123   |
-    | Candice202   | pass123   |
+    | Candice202   | pass123  |
     | odowellf  | MOXvFNcR |
