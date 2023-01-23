@@ -26,7 +26,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RegistrationServiceTest {
+public class RegistrationServiceTests {
     @InjectMocks
     private RegistrationServiceImpl registrationService;
 
