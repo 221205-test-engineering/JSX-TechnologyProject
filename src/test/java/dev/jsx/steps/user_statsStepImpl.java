@@ -38,16 +38,7 @@ public class user_statsStepImpl {
 
         assertEquals(expected,actual);
     }
-    @When("The user types {string} into username input")
-    public void the_user_types_into_username_input(String user) {
-        loginPage.usernameInput.clear();
-        loginPage.usernameInput.sendKeys(user);
-    }
-    @When("The user types {string} into password input")
-    public void the_user_types_into_password_input(String pass) {
-        loginPage.passwordInput.clear();
-        loginPage.passwordInput.sendKeys(pass);
-    }
+
     @When("The employee clicks on the login button")
     public void the_employee_clicks_on_the_login_button() {
 

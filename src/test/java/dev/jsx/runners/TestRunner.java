@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features="src/test/java/dev/jsx/features/CreateOrManageAccount",
+        features="src/test/java/dev/jsx/features",
         glue="dev.jsx.steps"
 )
 

@@ -50,6 +50,7 @@ public class LoginPositiveStepImpl {
                 .ignoring(ElementNotInteractableException.class)
                 .until(ExpectedConditions.visibilityOf(loginPage.usernameInput));
 
+        loginPage.usernameInput.clear();
         loginPage.usernameInput.sendKeys(string);
     }
 
@@ -57,6 +58,7 @@ public class LoginPositiveStepImpl {
     public void the_user_types_into_password_input(String string) {
         // Write code here that turns the phrase above into concrete actions
 //        System.out.println(string);
+        loginPage.passwordInput.clear();
         loginPage.passwordInput.sendKeys(string);
     }
 

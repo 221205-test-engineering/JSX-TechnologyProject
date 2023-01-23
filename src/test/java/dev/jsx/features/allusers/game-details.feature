@@ -10,5 +10,5 @@ Feature: user can see details of games
       | username    | password    |
       | gatorFan99  | chomp!!     |
       | mandy101    | pass123     |
-      | Bobby202    | pass123     |
+      | Candice202    | pass123     |
       | eegdell0    | DyAU3y5hLA  |

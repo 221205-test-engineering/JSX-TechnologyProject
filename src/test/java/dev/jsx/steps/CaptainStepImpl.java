@@ -37,7 +37,7 @@ public class CaptainStepImpl {
         wait.until(ExpectedConditions.elementToBeClickable(loginPage.loginButton));
 
         loginPage.usernameInput.clear();
-        loginPage.usernameInput.sendKeys("Bobby202");
+        loginPage.usernameInput.sendKeys("Candice202");
         loginPage.passwordInput.clear();
         loginPage.passwordInput.sendKeys("pass123");
 
@@ -60,7 +60,7 @@ public class CaptainStepImpl {
         viewTeam.click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"),("Your Team, Grand Dunk Railroad's Members")));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"),("Your Team, The Ballers's Members")));
 
         String expected = driver.getTitle();
         String actual = "Team Application";
@@ -82,7 +82,7 @@ public class CaptainStepImpl {
     public void the_player_can_view_details_on_a_player() {
         try  {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h2"), ("Grand Dunk Railroad's Captain")));
+            wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h2"), ("The Ballers's Captain")));
         } catch (TimeoutException e) {
             e.printStackTrace();
         }
@@ -116,7 +116,7 @@ public class CaptainStepImpl {
         teamRequests.click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"),("Team Requests for Grand Dunk Railroad")));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.tagName("h1"),("Team Requests for The Ballers")));
 
         String expected = driver.getTitle();
         String actual = "Team Requests";
@@ -222,7 +222,6 @@ public class CaptainStepImpl {
     @Then("The alert confirmation disappears and the captain sees the request status")
     public void the_alert_confirmation_disappears_and_the_captain_sees_the_request_status() {
         try {
-            WebElement request = requestPage.getRowByUserId("8");
 
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/table/tbody/tr[1]/td[4]/button")));
